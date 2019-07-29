@@ -27,11 +27,11 @@ public class LoginController {
             return "userName or passWord error";
         }
         User user = TestData.getUserMap().get(userName);
-        if(user.getPassWord().equals(passWord)){
-            HttpSession httpSession = request.getSession();
-            TestData.getSessionList().add(httpSession.getId());
-            return "login success";
+        if (!user.getPassWord().equals(passWord)){
+            return "userName or passWord error";
         }
-        return "userName or passWord error";
+        HttpSession httpSession = request.getSession();
+        TestData.getSessionList().add(httpSession.getId());
+        return "login success";
     }
 }
