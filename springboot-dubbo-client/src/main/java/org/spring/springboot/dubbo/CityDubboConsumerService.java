@@ -20,4 +20,8 @@ public class CityDubboConsumerService {
         City city = cityDubboService.findCityByName(cityName);
         System.out.println(city.toString());
     }
+
+    public City getCity(String cityName){
+        return cityDubboService.findCityByName(cityName);
+    }
 }
