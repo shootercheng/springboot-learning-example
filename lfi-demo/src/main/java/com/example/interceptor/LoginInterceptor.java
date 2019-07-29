@@ -35,9 +35,9 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         boolean isLogin = checkIsLogin(request);
-        String url = request.getRequestURL().toString();
-        String reqPrefix = url.substring(0, url.length() - (uri.length() - contextPath.length()));
         if(!isLogin){
+            String url = request.getRequestURL().toString();
+            String reqPrefix = url.substring(0, url.length() - (uri.length() - contextPath.length()));
             response.sendRedirect(reqPrefix + "/login.html");
             return false;
         }
@@ -54,8 +54,10 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
+        LOGGER.info("[Interceptor] {}, postHandle", "LoginInterceptor");
     }
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
+        LOGGER.info("[Interceptor] {}, afterCompletion", "LoginInterceptor");
     }
 }
